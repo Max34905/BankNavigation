@@ -19,7 +19,7 @@ object InputValidator {
     }
 
     fun isPhoneNumberValid(phoneNumber: String): Boolean {
-        val regex = Regex("^\\+\\d{10,15}$")
+        val regex = Regex("^\\d{10,15}$")
         return regex.matches(phoneNumber)
     }
 }

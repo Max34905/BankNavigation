@@ -24,6 +24,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.core.text.isDigitsOnly
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.bank.R
 import com.example.bank.ui.screens.components.OutlinedTextFieldWithError
@@ -41,7 +42,7 @@ fun AddPhoneNumberScreenWithViewModel(
         navigateBackToUpdateProfileScreen = navigateBackToUpdateProfileScreen,
         navigateToSecurityQuestionScreen = navigateToSecurityQuestionScreen,
         savePhoneNumber = { phoneNumber ->
-            viewModel.savePhoneNumber(phoneNumber)
+            viewModel.savePhoneNumber("+$phoneNumber")
         }
     )
 }
@@ -79,7 +80,7 @@ private fun AddPhoneNumberScreen(
         OutlinedTextFieldWithError(
             value = phoneNumber,
             onValueChange = { newValue ->
-                if (newValue.length <= 16) {
+                if (newValue.length <= 16 && newValue.isDigitsOnly()) {
                     phoneNumber = newValue
                 }
             },

@@ -34,7 +34,7 @@ class BankRepository @Inject constructor(
                 Log.e("SecurityException", "Failed to take persistable URI permission", e)
             }
         }
-        userDao.saveUserProfileInfo(firstName, lastName, uri.toString())
+        userDao.saveUserProfileInfo(firstName, lastName, uri?.toString() ?: "")
     }
 
     suspend fun hasUser(): Boolean {
@@ -58,7 +58,7 @@ class BankRepository @Inject constructor(
     }
 
     suspend fun getPinCode(): String {
-        return userDao.getPinCode()
+        return userDao.getPinCode() ?: ""
     }
 
     suspend fun saveCardColor(color: Color) {
@@ -66,29 +66,29 @@ class BankRepository @Inject constructor(
     }
 
     suspend fun getUserFullName(): String {
-        val firstName = userDao.getUserFirstName()
-        val lastName = userDao.getUserLastName()
+        val firstName = userDao.getUserFirstName() ?: ""
+        val lastName = userDao.getUserLastName() ?: ""
         return "$firstName $lastName"
     }
 
     suspend fun getUserEmail(): String {
-        return userDao.getUserEmail()
+        return userDao.getUserEmail() ?: ""
     }
 
     suspend fun getUserEntity(): UserEntity {
-        return userDao.getUserEntity()
+        return userDao.getUserEntity() ?: UserEntity()
     }
 
     suspend fun getPhoneNumber(): String {
-        return userDao.getUserPhoneNumber()
+        return userDao.getUserPhoneNumber() ?: ""
     }
 
     suspend fun getSecurityQuestionAnswer(): String {
-        return userDao.getUserSecurityQuestionAnswer()
+        return userDao.getUserSecurityQuestionAnswer() ?: ""
     }
 
     suspend fun getCardColor(): String {
-        return userDao.getUserCardColor()
+        return userDao.getUserCardColor() ?: ""
     }
 
     suspend fun checkEmailAndPassword(email: String, password: String): Boolean {

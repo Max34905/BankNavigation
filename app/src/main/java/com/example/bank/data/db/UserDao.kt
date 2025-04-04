@@ -16,7 +16,7 @@ interface UserDao {
     suspend fun getUserEmail(): String
 
     @Query("SELECT password FROM user WHERE id = 0")
-    suspend fun getUserPassword(): String
+    suspend fun getUserPassword(): String?
 
     @Query("UPDATE user SET firstName = :firstName, lastName = :lastName, uri = :uri WHERE id = 0")
     suspend fun saveUserProfileInfo(firstName: String, lastName: String, uri: String)
@@ -31,31 +31,31 @@ interface UserDao {
     suspend fun savePinCode(pinCode: String)
 
     @Query("SELECT pinCode FROM user WHERE id = 0")
-    suspend fun getPinCode(): String
+    suspend fun getPinCode(): String?
 
     @Query("UPDATE user SET color = :color WHERE id = 0")
     suspend fun saveCardColor(color: String)
 
     @Query("SELECT firstName FROM user WHERE id = 0")
-    suspend fun getUserFirstName(): String
+    suspend fun getUserFirstName(): String?
 
     @Query("SELECT lastName FROM user WHERE id = 0")
-    suspend fun getUserLastName(): String
+    suspend fun getUserLastName(): String?
 
     @Query("SELECT phoneNumber FROM user WHERE id = 0")
-    suspend fun getUserPhoneNumber(): String
+    suspend fun getUserPhoneNumber(): String?
 
     @Query("SELECT securityAnswer FROM user WHERE id = 0")
-    suspend fun getUserSecurityQuestionAnswer(): String
+    suspend fun getUserSecurityQuestionAnswer(): String?
 
     @Query("SELECT uri FROM user WHERE id = 0")
-    suspend fun getUserUri(): String
+    suspend fun getUserUri(): String?
 
     @Query("SELECT color FROM user WHERE id = 0")
-    suspend fun getUserCardColor(): String
+    suspend fun getUserCardColor(): String?
 
     @Query("SELECT * FROM user WHERE id = 0")
-    suspend fun getUserEntity(): UserEntity
+    suspend fun getUserEntity(): UserEntity?
 
     @Query("SELECT COUNT(*) > 0 FROM user WHERE email = :email AND password = :password LIMIT 1")
     suspend fun checkEmailAndPassword(email: String, password: String): Boolean

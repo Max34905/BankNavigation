@@ -29,7 +29,7 @@ class AppNavigationViewModel @Inject constructor(
     private fun checkDatabase() {
         viewModelScope.launch {
             val hasUser = repository.hasUser()
-            _navigationState.value = NavigationState.Ready(if (hasUser) LogIn else StartScreen)
+            _navigationState.value = NavigationState.Ready(if (hasUser) Authorization else StartScreen)
         }
     }
 }
